@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: "${env.BRANCH_NAME}"
+                git branch: "${env.BRANCH_NAME}",
                     url: 'https://github.com/pingvinoth25-git/Infra-pipeline.git'
             }
         }
