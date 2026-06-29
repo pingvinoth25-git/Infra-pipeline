@@ -1,0 +1,17 @@
+module "vpc" {
+  source        = "../../modules/vpc"
+  envname       = "dev"
+  vpc_cidr      = "10.0.0.0/16"
+  subnet_cidr   = "10.0.1.0/24"
+  subnet_az     = "${var.aws_region}a"
+}
+}
+
+module "ec2" {
+  source        = "../../modules/ec2"
+  ami_id        = "ami-08f44e8eca9095668"
+  instance_type = "t2.small"
+  subnet_id     = module.vpc.subnet_id
+  ec2_count     = "1"
+  envname       = "dev"
+}
