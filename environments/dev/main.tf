@@ -5,7 +5,7 @@ module "vpc" {
   subnet_cidr   = "10.0.1.0/24"
   subnet_az     = "${var.aws_region}a"
 }
-}
+
 
 module "ec2" {
   source        = "../../modules/ec2"
