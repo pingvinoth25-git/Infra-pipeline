@@ -11,30 +11,33 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: "${env.BRANCH_NAME}",
-                    url: 'https://github.com/pingvinoth25-git/Infra-pipeline.git'
+                    url: "https://github.com/pingvinoth25-git/Infra-pipeline.git"
             }
         }
 
         stage('Terraform Init') {
             steps {
-            dir("${TF_WORKDIR}")
-                sh 'terraform init'
+                dir("${TF_WORKDIR}") {
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Terraform Plan') {
             steps {
-              dir("${TF_WORKDIR}")
-                sh 'terraform plan -out=tfplan'
-                sh 'terraform show -no-color tfplan > tfplan.txt'
-                sh 'cat tfplan.txt'
+                dir("${TF_WORKDIR}") {
+                    sh 'terraform plan -out=tfplan'
+                    sh 'terraform show -no-color tfplan > tfplan.txt'
+                    sh 'cat tfplan.txt'
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-              dir("${TF_WORKDIR}")
-                sh 'terraform apply -auto-approve tfplan'
+                dir("${TF_WORKDIR}") {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
             }
         }
     }
