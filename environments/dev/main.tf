@@ -1,3 +1,4 @@
+/*
 module "vpc" {
   source        = "../../modules/vpc"
   envname       = "dev"
@@ -15,3 +16,4 @@ module "ec2" {
   ec2_count     = "2"
   envname       = "dev"
 }
+*/
